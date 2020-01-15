@@ -1,0 +1,14 @@
+<input type="file" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)" accept=".csv" />    
+<table class="minimalistBlack" *ngIf="records.length > 0">    
+  <thead>    
+    <tr>    
+      <th *ngFor="let header of headersRow">{{header}}</th>
+    </tr>    
+  </thead>    
+  <tbody>    
+    <tr *ngFor="let record of records | paginate: { itemsPerPage: 20, currentPage: p } ;let i = index;">    
+      <td *ngFor="let header of headersRow"> <span>{{record[header]}}</span></td> 
+    </tr>    
+  </tbody>    
+</table> 
+<pagination-controls *ngIf="records.length > 0" (pageChange)="p = $event"></pagination-controls>
